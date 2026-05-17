@@ -781,7 +781,7 @@ async function generateQuestions(notes) {
         'Authorization': `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-3.5-sonnet',
+        model: 'anthropic/claude-3.5-haiku',
         messages: [{
           role: 'user',
           content: `Generate exactly 8 multiple-choice questions based on these study notes. Return ONLY a JSON array, no markdown, no explanation. Format: [{"q":"question", "opts":["A", "B", "C", "D"], "ans":0}] where ans is the index of the correct answer.\n\nNotes:\n${trimmed.slice(0, 2000)}`
