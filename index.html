@@ -597,7 +597,7 @@ body.game-active {
   }
 }
 
-</style></head><body><canvas id="particle-canvas"></canvas><div id="grid-overlay"></div><div id="cursor-dot"></div><div id="cursor-ring"></div><div id="feedback-flash"></div><!-- LANDING --><div id="landing"><div style="display:flex;flex-direction:column;align-items:center;"><div class="panel" id="landing-panel"><div class="pip tl"></div><div class="pip tr"></div><div class="pip bl"></div><div class="pip br"></div><div class="logo">StudyRush</div><div class="logo-sub">where learning becomes a game</div><div class="notes-label">Paste your notes below</div><textarea id="notes-input" placeholder="Copy and paste your study notes here… Claude will generate quiz questions from them during the race."></textarea><div class="char-section-title">Choose your runner</div><div class="char-grid" id="char-grid"></div><div class="char-section-title">Gate approach speed</div><div class="pace-grid" id="pace-grid"><div class="pace-card" data-pace="relaxed"><span class="pace-icon">🐢</span><div class="pace-name">Relaxed</div><div class="pace-desc">20 sec · slow gates</div></div><div class="pace-card selected" data-pace="normal"><span class="pace-icon">🏃</span><div class="pace-name">Normal</div><div class="pace-desc">10 sec · medium gates</div></div><div class="pace-card" data-pace="rush"><span class="pace-icon">⚡</span><div class="pace-name">Rush</div><div class="pace-desc">5 sec · fast gates</div></div></div><button class="play-btn" id="play-btn"><span>✦ Begin Race</span></button></div><div id="scroll-hint" style="margin-top:2.5rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:.5;animation:scrollBob 2s ease-in-out infinite;"><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--gold-light);letter-spacing:.2em;">meet the team</span><svg width="20" height="28" viewBox="0 0 20 28" fill="none"><rect x="7" y="2" width="6" height="14" rx="3" stroke="#C9A84C" stroke-width="1.2" /><line x1="10" y1="18" x2="10" y2="26" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round" /><polyline points="6,22 10,26 14,22" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div><section id="credits" style="width:min(580px,90vw);margin:3rem 0 6rem;"><div class="panel" style="text-align:center;"><div class="pip tl"></div><div class="pip tr"></div><div class="pip bl"></div><div class="pip br"></div><div style="font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:1.4rem;">Crafted by</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem 2rem;"><div class="creator-card"><div class="creator-num">01</div><div class="creator-name">Jyotsna</div><div class="creator-line"></div></div><div class="creator-card"><div class="creator-num">02</div><div class="creator-name">Natchatraa</div><div class="creator-line"></div></div><div class="creator-card"><div class="creator-num">03</div><div class="creator-name">Vaishnavi</div><div class="creator-line"></div></div><div class="creator-card"><div class="creator-num">04</div><div class="creator-name">Aathmika</div><div class="creator-line"></div></div></div><div style="margin-top:1.8rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.9rem;color:rgba(248,243,230,.35);letter-spacing:.1em;">EOS × Spark AI Hackathon 2026</div></div></section></div></div><!-- GAME --><div class="screen" id="game-screen"><canvas id="game-canvas"></canvas><div id="hud"><div id="hud-char"><span id="hud-sprite"></span><div><div class="hud-stat">Runner</div><div id="hud-ability" style="font-size:.7rem;color:var(--sage-light);font-family:'Cormorant Garamond',serif;font-style:italic;"></div></div></div><div class="hud-divider"></div><div><div class="hud-stat">Score</div><div class="hud-val" id="hud-score">0</div></div><div class="hud-divider"></div><div><div class="hud-stat">Streak ✦</div><div class="hud-val" id="hud-streak">0</div></div><div class="hud-divider"></div><div id="speed-bar-wrap"><div class="hud-stat">Speed</div><div id="speed-bar"><div id="speed-fill"></div></div></div><div class="hud-divider"></div><div><div class="hud-stat">Lives</div><div id="hud-lives"></div></div><div id="subject-tag">NOTES LOADED</div></div><!-- Controls hint at bottom --><div id="controls-hint"><div class="ctrl-hint"><span class="ctrl-key">◀ ▶</span>Move</div><div class="ctrl-hint" style="opacity:.4;">—</div><div class="ctrl-hint"><span class="ctrl-key">1</span><span class="ctrl-key">2</span><span class="ctrl-key">3</span><span class="ctrl-key">4</span>Answer</div><div class="ctrl-hint" style="opacity:.4;">—</div><div class="ctrl-hint">or click a gate</div></div><div id="question-panel"><div class="panel"><div class="pip tl"></div><div class="pip tr"></div><div class="pip bl"></div><div class="pip br"></div><div id="q-counter"></div><div id="q-text"></div><div style="margin-top:1rem;display:flex;align-items:center;gap:.75rem;"><div id="q-timer-bar-wrap" style="flex:1;height:4px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden;"><div id="q-timer-bar" style="height:100%;width:100%;border-radius:10px;background:linear-gradient(90deg,var(--sage),var(--gold));transition:width .1s linear;"></div></div><div id="q-timer-num" style="font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;color:var(--gold-light);min-width:1.5rem;text-align:right;">10</div></div></div></div></div><!-- RESULTS --><div class="screen" id="results-screen"><div class="panel"><div class="pip tl"></div><div class="pip tr"></div><div class="pip bl"></div><div class="pip br"></div><div class="results-logo">Race Complete</div><div class="results-grid"><div class="result-stat"><div class="result-label">Final Score</div><div class="result-value" id="r-score">0</div></div><div class="result-stat"><div class="result-label">Answered</div><div class="result-value" id="r-answered">0</div></div><div class="result-stat"><div class="result-label">Accuracy</div><div class="result-value" id="r-accuracy">0%</div></div><div class="result-stat"><div class="result-label">Best Streak</div><div class="result-value" id="r-streak">0</div></div></div><div class="results-btns"><button id="btn-again">↺ Race Again</button><button id="btn-back">← Back to Notes</button></div></div></div><script> // ─── CURSOR ───────────────────────────────────────────
+</style></head><body><canvas id="particle-canvas"></canvas><div id="grid-overlay"></div><div id="cursor-dot"></div><div id="cursor-ring"></div><div id="feedback-flash"></div><!-- LANDING --><div id="landing"><div style="display:flex;flex-direction:column;align-items:center;"><div class="panel" id="landing-panel"><div class="pip tl"></div><div class="pip tr"></div><div class="pip bl"></div><div class="pip br"></div><div class="logo">StudyRush</div><div class="logo-sub">where learning becomes a game</div><div class="notes-label">Paste your notes below</div><textarea id="notes-input" placeholder="Copy and paste your study notes here… Claude will generate quiz questions from them during the race."></textarea><div class="char-section-title">Choose your runner</div><div class="char-grid" id="char-grid"></div><div class="char-section-title">Gate approach speed</div><div class="pace-grid" id="pace-grid"><div class="pace-card" data-pace="relaxed"><span class="pace-icon">🐢</span><div class="pace-name">Relaxed</div><div class="pace-desc">20 sec · slow gates</div></div><div class="pace-card selected" data-pace="normal"><span class="pace-icon">🏃</span><div class="pace-name">Normal</div><div class="pace-desc">10 sec · medium gates</div></div><div class="pace-card" data-pace="rush"><span class="pace-icon">⚡</span><div class="pace-name">Rush</div><div class="pace-desc">5 sec · fast gates</div></div></div><button class="play-btn" id="play-btn"><span>✦ Begin Race</span></button></div><div id="scroll-hint" style="margin-top:2.5rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:.5;animation:scrollBob 2s ease-in-out infinite;"><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--gold-light);letter-spacing:.2em;">meet the team</span><svg width="20" height="28" viewBox="0 0 20 28" fill="none"><rect x="7" y="2" width="6" height="14" rx="3" stroke="#C9A84C" stroke-width="1.2" /><line x1="10" y1="18" x2="10" y2="26" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round" /><polyline points="6,22 10,26 14,22" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div><section id="credits" style="width:min(580px,90vw);margin:3rem 0 6rem;"><div class="panel" style="text-align:center;"><div class="pip tl"></div><div class="pip tr"></div><div class="pip bl"></div><div class="pip br"></div><div style="font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:1.4rem;">Crafted by</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem 2rem;"><div class="creator-card"><div class="creator-num">01</div><div class="creator-name">Jyotsna</div><div class="creator-line"></div></div><div class="creator-card"><div class="creator-num">02</div><div class="creator-name">Natchatraa</div><div class="creator-line"></div></div><div class="creator-card"><div class="creator-num">03</div><div class="creator-name">Vaishnavi</div><div class="creator-line"></div></div><div class="creator-card"><div class="creator-num">04</div><div class="creator-name">Aathmika</div><div class="creator-line"></div></div></div><div style="margin-top:1.8rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.9rem;color:rgba(248,243,230,.35);letter-spacing:.1em;">EOS × Spark AI Hackathon 2026</div></div></section></div></div><!-- GAME --><div class="screen" id="game-screen"><canvas id="game-canvas"></canvas><div id="hud"><div id="hud-char"><span id="hud-sprite"></span><div><div class="hud-stat">Runner</div><div id="hud-ability" style="font-size:.7rem;color:var(--sage-light);font-family:'Cormorant Garamond',serif;font-style:italic;"></div></div></div><div class="hud-divider"></div><div><div class="hud-stat">Score</div><div class="hud-val" id="hud-score">0</div></div><div class="hud-divider"></div><div><div class="hud-stat">Streak ✦</div><div class="hud-val" id="hud-streak">0</div></div><div class="hud-divider"></div><div id="speed-bar-wrap"><div class="hud-stat">Speed</div><div id="speed-bar"><div id="speed-fill"></div></div></div><div class="hud-divider"></div><div><div class="hud-stat">Lives</div><div id="hud-lives"></div></div><div id="subject-tag">NOTES LOADED</div></div><!-- Controls hint at bottom --><div id="controls-hint"><div class="ctrl-hint"><span class="ctrl-key">◀ ▶</span>Move</div><div class="ctrl-hint" style="opacity:.4;">—</div><div class="ctrl-hint"><span class="ctrl-key">1</span><span class="ctrl-key">2</span><span class="ctrl-key">3</span><span class="ctrl-key">4</span>Answer</div><div class="ctrl-hint" style="opacity:.4;">—</div><div class="ctrl-hint">or click a gate</div></div><div id="question-panel"><div class="panel"><div class="pip tl"></div><div class="pip tr"></div><div class="pip bl"></div><div class="pip br"></div><div id="q-counter"></div><div id="q-text"></div><div style="margin-top:1rem;display:flex;align-items:center;gap:.75rem;"><div id="q-timer-bar-wrap" style="flex:1;height:4px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden;"><div id="q-timer-bar" style="height:100%;width:100%;border-radius:10px;background:linear-gradient(90deg,var(--sage),var(--gold));transition:width .1s linear;"></div></div><div id="q-timer-num" style="font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;color:var(--gold-light);min-width:1.5rem;text-align:right;">10</div></div></div></div></div><!-- RESULTS --><div class="screen" id="results-screen"><div class="panel"><div class="pip tl"></div><div class="pip tr"></div><div class="pip bl"></div><div class="pip br"></div><div class="results-logo">Race Complete</div><div class="results-grid"><div class="result-stat"><div class="result-label">Final Score</div><div class="result-value" id="r-score">0</div></div><div class="result-stat"><div class="result-label">Answered</div><div class="result-value" id="r-answered">0</div></div><div class="result-stat"><div class="result-label">Accuracy</div><div class="result-value" id="r-accuracy">0%</div></div><div class="result-stat"><div class="result-label">Best Streak</div><div class="result-value" id="r-streak">0</div></div></div><div class="results-btns"><button id="btn-again">↺ Race Again</button><button id="btn-back">← Back to Notes</button></div></div></div><script type="module"> // ─── CURSOR ───────────────────────────────────────────
 const dot=document.getElementById('cursor-dot');
 const ring=document.getElementById('cursor-ring');
 let mx=0,
@@ -809,49 +809,33 @@ q: "Which gas do plants absorb?", opts:["Oxygen", "Nitrogen", "Carbon Dioxide", 
 ];
 
 async function generateQuestions(notes) {
-  const trimmed=notes.trim();
-  if( !trimmed||trimmed.length<30) return FALLBACK_QUESTIONS;
+  const trimmed = notes.trim();
+  if (!trimmed || trimmed.length < 30) return FALLBACK_QUESTIONS;
 
   try {
-    const res=await fetch('https://api.anthropic.com/v1/messages', {
-
-      method:'POST',
+    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
       headers: {
-        'Content-Type':'application/json'
-      }
-
-      ,
-      body:JSON.stringify({
-
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[ {
-          role:'user', content:`Generate exactly 8 multiple-choice questions based on these study notes. Return ONLY a JSON array, no markdown, no explanation. Format: [ {
-            "q":"question", "opts":["A", "B", "C", "D"], "ans":0
-          }
-
-          ] where ans is the index of the correct answer.\n\nNotes:\n${
-            trimmed.slice(0, 2000)
-          }
-
-          `
-        }
-
-        ]
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'anthropic/claude-3.5-sonnet',
+        messages: [{
+          role: 'user',
+          content: `Generate exactly 8 multiple-choice questions based on these study notes. Return ONLY a JSON array, no markdown, no explanation. Format: [{"q":"question", "opts":["A", "B", "C", "D"], "ans":0}] where ans is the index of the correct answer.\n\nNotes:\n${trimmed.slice(0, 2000)}`
+        }]
       })
-  });
-const data=await res.json();
-const text=data.content.map(b=>b.text||'').join('');
-const clean=text.replace(/```json|```/g, '').trim();
-const parsed=JSON.parse(clean);
-if(Array.isArray(parsed)&&parsed.length>0) return parsed;
-}
-
-catch(e) {
-  console.warn('AI generation failed, using fallback', e);
-}
-
-return FALLBACK_QUESTIONS;
+    });
+    const data = await res.json();
+    const text = data.choices[0].message.content;
+    const clean = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+  } catch (e) {
+    console.warn('AI generation failed, using fallback', e);
+  }
+  return FALLBACK_QUESTIONS;
 }
 
 // ─── PLAY BUTTON ──────────────────────────────────────
