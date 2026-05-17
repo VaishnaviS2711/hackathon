@@ -766,51 +766,12 @@ let keys= {}
 ;
 let animFrame;
 
-const FALLBACK_QUESTIONS=[ {
-  q: "What is the powerhouse of the cell?", opts:["Nucleus", "Mitochondria", "Ribosome", "Golgi Body"], ans:1
-}
-
-,
-{
-q: "What does DNA stand for?", opts:["Deoxyribonucleic Acid", "Deoxyribonicle Acid", "Dinuclear Acid", "Dynamic Nucleic Acid"], ans:0
-}
-
-,
-{
-q: "Which planet is the largest?", opts:["Saturn", "Neptune", "Jupiter", "Uranus"], ans:2
-}
-
-,
-{
-q: "What is the chemical symbol for water?", opts:["HO", "H2O", "H3O", "OH"], ans:1
-}
-
-,
-{
-q: "Who proposed the theory of relativity?", opts:["Newton", "Faraday", "Einstein", "Tesla"], ans:2
-}
-
-,
-{
-q: "How many bones are in the adult body?", opts:["196", "206", "216", "186"], ans:1
-}
-
-,
-{
-q: "What is the speed of light?", opts:["3×10⁸ m/s", "3×10⁶ m/s", "3×10¹⁰ m/s", "3×10⁴ m/s"], ans:0
-}
-
-,
-{
-q: "Which gas do plants absorb?", opts:["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], ans:2
-}
-
-,
-];
-
 async function generateQuestions(notes) {
   const trimmed = notes.trim();
-  if (!trimmed || trimmed.length < 30) return FALLBACK_QUESTIONS;
+  if (!trimmed || trimmed.length < 30) {
+    alert("Please paste at least 30 characters of notes to generate a quiz.");
+    return null;
+  }
 
   try {
     const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -828,14 +789,16 @@ async function generateQuestions(notes) {
       })
     });
     const data = await res.json();
+    if (!data.choices || !data.choices[0]) throw new Error("Invalid API response");
     const text = data.choices[0].message.content;
     const clean = text.replace(/```json|```/g, '').trim();
     const parsed = JSON.parse(clean);
     if (Array.isArray(parsed) && parsed.length > 0) return parsed;
   } catch (e) {
-    console.warn('AI generation failed, using fallback', e);
+    console.error('AI generation failed:', e);
+    alert("Failed to generate questions from your notes. Please try again.");
   }
-  return FALLBACK_QUESTIONS;
+  return null;
 }
 
 // ─── PLAY BUTTON ──────────────────────────────────────
@@ -844,9 +807,12 @@ document.getElementById('play-btn').addEventListener('click', async()=> {
     const btn=document.getElementById('play-btn');
     btn.innerHTML='<span>Generating questions…</span>';
     btn.disabled=true;
-    questions=await generateQuestions(notes);
+    const generated = await generateQuestions(notes);
     btn.innerHTML='<span>✦ Begin Race</span>';
     btn.disabled=false;
+
+    if (!generated || generated.length === 0) return;
+    questions = generated;
 
     const subTag=document.getElementById('subject-tag');
 
